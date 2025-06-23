@@ -10,21 +10,28 @@
         <h1>CAN Bit Pattern Generator</h1>
         <form id="can-form">
             <div class="form-group">
-                <label for="can-id">CAN-ID (11 bits, hex or dec):</label>
-                <input type="text" id="can-id" maxlength="4" placeholder="7FF" required>
+                <label for="can-id">CAN ID (11 bits):</label>
+                <input type="number" id="can-id" name="can-id" min="0" max="2047" required>
             </div>
             <div class="form-group">
-                <label for="dlc">DLC (Data Length Code, 0-8):</label>
-                <input type="number" id="dlc" min="0" max="8" value="8" required>
+                <label for="dlc">DLC (0-8):</label>
+                <input type="number" id="dlc" name="dlc" min="0" max="8" required>
             </div>
             <div class="form-group">
                 <label for="data">Data (hex, space/comma separated):</label>
-                <input type="text" id="data" placeholder="11 22 33 44 55 66 77 88" required>
+                <input type="text" id="data" name="data" placeholder="e.g. 12 34 AB">
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="flip-bits">
+                    Flip Dominant and Recessive (0 &harr; 1)
+                </label>
             </div>
             <button type="button" id="generate-btn">Generate Bit Pattern</button>
         </form>
         <div id="bit-pattern-output"></div>
     </div>
-    <script src="canbitpattern.js"></script>
+    <script src="can_crc.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
