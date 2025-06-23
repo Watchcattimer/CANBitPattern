@@ -1,87 +1,118 @@
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f4f8fb;
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 600px;
-    margin: 40px auto;
     background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 6px 32px rgba(0,0,0,0.07);
-    padding: 32px 28px;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.07);
 }
 
 h1 {
     text-align: center;
-    color: #1d3557;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
 }
 
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
-    color: #333;
+    margin-bottom: 6px;
+    font-weight: 600;
 }
 
-input[type="text"], input[type="number"] {
+input[type="number"], input[type="text"] {
     width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #b1b1b1;
+    padding: 7px 8px;
+    font-size: 16px;
+    border: 1px solid #bbb;
     border-radius: 4px;
-    font-size: 1em;
 }
 
 button {
     display: block;
     width: 100%;
-    padding: 12px 0;
-    background: #457b9d;
+    background: #1873d3;
     color: #fff;
+    font-size: 17px;
+    padding: 12px 0;
     border: none;
-    border-radius: 5px;
-    font-size: 1.1em;
+    border-radius: 4px;
     cursor: pointer;
+    font-weight: 600;
+    margin-top: 10px;
     transition: background 0.2s;
 }
-
 button:hover {
-    background: #1d3557;
+    background: #135aaf;
 }
 
 #bit-pattern-output {
-    margin-top: 32px;
-    padding: 18px 12px;
-    background: #f1faee;
-    border-radius: 8px;
-    border: 1px solid #d1dbe3;
+    margin-top: 30px;
     font-family: 'Fira Mono', 'Consolas', monospace;
-    font-size: 1em;
-    word-break: break-all;
+}
+
+.field-label {
+    font-weight: bold;
+    margin-right: 12px;
+    margin-top: 10px;
+    display: block;
 }
 
 .bit-field {
-    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 8px;
 }
 
-.bit-label {
-    display: inline-block;
-    min-width: 130px;
-    font-weight: bold;
-    color: #222;
+.bit {
+    width: 22px;
+    height: 32px;
+    margin: 0 1.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    border: 1px solid #bbb;
+    box-shadow: 0 1px 2px #e2e2e2;
 }
-
-.bit-bits {
-    word-break: break-all;
-    letter-spacing: 0.04em;
-    color: #2d6a4f;
-    background: #e0e7ef;
-    border-radius: 4px;
-    padding: 2px 6px;
-    font-family: inherit;
+.bit.dominant {
+    background: #2476f6;
+    color: #fff;
+    border-color: #2476f6;
+}
+.bit.recessive {
+    background: #e0e0e0;
+    color: #333;
+    border-color: #bbb;
+}
+.bit.stuff {
+    border: 2px solid #e22;
+    box-shadow: 0 0 6px #e22;
+    position: relative;
+    z-index: 2;
+}
+.bit:last-child {
+    margin-right: 0;
+}
+@media (max-width: 700px) {
+    .container {
+        padding: 12px 6px;
+    }
+    .bit {
+        width: 17px;
+        font-size: 14px;
+    }
 }
