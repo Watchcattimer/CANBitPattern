@@ -1,4 +1,28 @@
-<html><h1>Live test</h1>
-  <script src="script.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAN Bit Pattern Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>CAN Bit Pattern Generator</h1>
+        <form id="can-form">
+            <label for="bit-sequence">Enter Bit Sequence (0 and 1):</label>
+            <input type="text" id="bit-sequence" maxlength="128" placeholder="e.g. 11010101" required pattern="[01]+">
+            <button type="submit">Generate Pattern</button>
+        </form>
+        <div class="output-section">
+            <h2>Generated CAN Bit Pattern</h2>
+            <canvas id="pattern-canvas" width="800" height="200"></canvas>
+            <div id="pattern-error" class="error"></div>
+        </div>
+        <footer>
+            <p>CAN Bit Pattern Generator &copy; 2025</p>
+        </footer>
+    </div>
+    <script src="app.js"></script>
+</body>
 </html>
-
