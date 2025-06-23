@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAN Bit Pattern Generator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -10,19 +9,22 @@
     <div class="container">
         <h1>CAN Bit Pattern Generator</h1>
         <form id="can-form">
-            <label for="bit-sequence">Enter Bit Sequence (0 and 1):</label>
-            <input type="text" id="bit-sequence" maxlength="128" placeholder="e.g. 11010101" required pattern="[01]+">
-            <button type="submit">Generate Pattern</button>
+            <div class="form-group">
+                <label for="can-id">CAN-ID (11 bits, hex or dec):</label>
+                <input type="text" id="can-id" maxlength="4" placeholder="7FF" required>
+            </div>
+            <div class="form-group">
+                <label for="dlc">DLC (Data Length Code, 0-8):</label>
+                <input type="number" id="dlc" min="0" max="8" value="8" required>
+            </div>
+            <div class="form-group">
+                <label for="data">Data (hex, space/comma separated):</label>
+                <input type="text" id="data" placeholder="11 22 33 44 55 66 77 88" required>
+            </div>
+            <button type="button" id="generate-btn">Generate Bit Pattern</button>
         </form>
-        <div class="output-section">
-            <h2>Generated CAN Bit Pattern</h2>
-            <canvas id="pattern-canvas" width="800" height="200"></canvas>
-            <div id="pattern-error" class="error"></div>
-        </div>
-        <footer>
-            <p>CAN Bit Pattern Generator &copy; 2025</p>
-        </footer>
+        <div id="bit-pattern-output"></div>
     </div>
-    <script src="app.js"></script>
+    <script src="canbitpattern.js"></script>
 </body>
 </html>
