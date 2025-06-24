@@ -39,14 +39,32 @@
         <div id="bit-pattern-output"></div>
 		<div class="legend" style="margin-top:2em;">
 			<h3>Legend</h3>
-			<ul>
-				<li class="nowrap"><span class="bit dominant">X</span> Dominant Bit</li>
-				<li><span class="bit recessive">X</span><span class="nowrap">Recessive Bit</span></li>
-				<li><span class="bit stuff">X</span>Stuff Bit</li>
-				<li><b>DLC</b>: Data Length Code (number of data bytes)</li>
-				<li><b>CRC</b>: Cyclic Redundancy Check bits for error detection</li>
-				<li><b>ACK</b>: Acknowledge slot and delimiter</li>
-			</ul>
+				<table class="legend-table">
+				<tr>
+					<td><span class="bit dominant">X</span></td>
+					<td>Dominant Bit</td>
+				</tr>
+				<tr>
+					<td><span class="bit recessive">X</span></td>
+					<td>Recessive Bit</td>
+				</tr>
+				<tr>
+					<td><span class="bit stuff">0/1</span></td>
+					<td>Stuff Bit</td>
+				</tr>
+				<tr>
+					<td><b>DLC</b></td>
+					<td>Data Length Code (number of data bytes)</td>
+				</tr>
+				<tr>
+					<td><b>CRC</b></td>
+					<td>Cyclic Redundancy Check bits for error detection</td>
+				</tr>
+				<tr>
+					<td><b>ACK</b></td>
+					<td>Acknowledge slot and delimiter</td>
+				</tr>
+				</table>
 		</div>	
 		
     </div>
