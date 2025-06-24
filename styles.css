@@ -108,6 +108,7 @@ button:hover {
     margin-right: 0;
 }
 .disclaimer{
+    text-align: center;
     font-size:10px;
 }
 @media (max-width: 700px) {
