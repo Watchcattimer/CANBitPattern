@@ -21,12 +21,6 @@ Currently, only standard frames (11-bit identifier) is supposrted.
 | **EOF**          | End of Frame                                                |
 | **IFS**          | Inter-Frame Space                                           |
 | **FD**           | Flexible Data-rate                                          |
-| **ECU**          | Electronic Control Unit                                     |
-| **ISO 11898**    | International standard defining CAN specifications          |
-| **Bit Stuffing** | Insertion of complementary bits to maintain synchronization |
-| **Bus-Off**      | Error state where a node is disconnected from the bus       |
-| **Dominant**     | Logical '0' on the CAN bus                                  |
-| **Recessive**    | Logical '1' on the CAN bus                                  |
 
 
 
