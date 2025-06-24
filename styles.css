@@ -104,10 +104,9 @@ button:hover {
     position: relative;
     z-index: 2;
 }
-.bit.nowrap {
+.nowrap {
   white-space: nowrap;
-}
-.bit:last-child {
+}.bit:last-child {
     margin-right: 0;
 }
 .disclaimer{
