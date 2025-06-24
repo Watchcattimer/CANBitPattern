@@ -145,6 +145,17 @@ document.querySelectorAll('input[type="text"]').forEach(function(input) {
     });
 });
 
+document.getElementById('data').addEventListener('input', function(e) {
+    // Remove all non-hex characters and spaces, make uppercase
+    let clean = this.value.replace(/[^A-Fa-f0-9]/g, '').toUpperCase();
+    // Insert space every two characters
+    let spaced = clean.replace(/(.{2})/g, '$1 ').trim();
+    // If the value is different, update it
+    if (this.value !== spaced) {
+        this.value = spaced;
+    }
+});
+
 document.getElementById('generate-btn').addEventListener('click', function() {
     try {
 		let canIdFormat = document.querySelector('input[name="can-id-format"]:checked').value;
