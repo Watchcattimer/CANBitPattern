@@ -1,5 +1,6 @@
 # CAN Bit Pattern Generator
 A web-based tool designed to help visualize and understand the low-level bit representation of CAN messages. Whether you're working on embedded systems, automotive applications, or industrial automation, this tool allows you to create custom CAN frames and instantly see their bit-level encoding, including stuffing bits and CRC calculation.
+Currently, only standard frames (11-bit identifier) is supposrted.
 
 # Abbreviations
 | **Abbreviation** | **Meaning**                                                 |
