@@ -141,8 +141,12 @@ function generateCANFrame(canId, dlc, dataBytes, flip) {
 
 document.getElementById('generate-btn').addEventListener('click', function() {
     try {
-        let canId = parseInt(document.getElementById('can-id').value, 10);
-        let dlc = parseInt(document.getElementById('dlc').value, 10);
+		let canIdFormat = document.querySelector('input[name="can-id-format"]:checked').value;
+		let canIdRaw = document.getElementById('can-id').value.trim();
+		let canId = canIdFormat === 'hex'
+			? parseInt(canIdRaw, 16)
+			: parseInt(canIdRaw, 10);
+		let dlc = parseInt(document.getElementById('dlc').value, 10);
         let dataStr = document.getElementById('data').value;
         let flip = document.getElementById('flip-bits').checked;
 
