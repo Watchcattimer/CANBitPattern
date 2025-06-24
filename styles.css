@@ -107,6 +107,9 @@ button:hover {
 .bit:last-child {
     margin-right: 0;
 }
+.disclaimer{
+    font-size:10px;
+}
 @media (max-width: 700px) {
     .container {
         padding: 12px 6px;
