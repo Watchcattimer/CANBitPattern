@@ -2,7 +2,31 @@
 A web-based tool designed to help visualize and understand the low-level bit representation of CAN messages. Whether you're working on embedded systems, automotive applications, or industrial automation, this tool allows you to create custom CAN frames and instantly see their bit-level encoding, including stuffing bits and CRC calculation.
 
 # Abbreviations
-CAN: Controller Area Network
+| **Abbreviation** | **Meaning**                                                 |
+| ---------------- | ----------------------------------------------------------- |
+| **CAN**          | Controller Area Network                                     |
+| **DLC**          | Data Length Code                                            |
+| **SOF**          | Start of Frame                                              |
+| **ID**           | Identifier (Arbitration Field – 11-bit or 29-bit)           |
+| **RTR**          | Remote Transmission Request                                 |
+| **IDE**          | Identifier Extension (distinguishes standard/extended)      |
+| **r0**           | Reserved bit (must be dominant in standard CAN)             |
+| **r1**           | Second reserved bit (used in CAN FD)                        |
+| **D**            | Data Field                                                  |
+| **CRC**          | Cyclic Redundancy Check                                     |
+| **CRC Delim**    | CRC Delimiter                                               |
+| **ACK**          | Acknowledge Slot (bit sent by receiving node)               |
+| **ACK Delim**    | Acknowledge Delimiter                                       |
+| **EOF**          | End of Frame                                                |
+| **IFS**          | Inter-Frame Space                                           |
+| **FD**           | Flexible Data-rate                                          |
+| **ECU**          | Electronic Control Unit                                     |
+| **ISO 11898**    | International standard defining CAN specifications          |
+| **Bit Stuffing** | Insertion of complementary bits to maintain synchronization |
+| **Bus-Off**      | Error state where a node is disconnected from the bus       |
+| **Dominant**     | Logical '0' on the CAN bus                                  |
+| **Recessive**    | Logical '1' on the CAN bus                                  |
+
 
 
 ### Disclaimer
