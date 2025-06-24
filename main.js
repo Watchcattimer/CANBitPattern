@@ -136,6 +136,14 @@ function generateCANFrame(canId, dlc, dataBytes, flip) {
     html += renderBitField('ACK + Delimiter', ackSlot.concat(ackDelim), [], 0, flip);
     html += renderBitField('End of Frame', eof, [], 0, flip);
 
+	// for bit pattern
+	let bitArray = [].concat(
+		stuffedBits, crcBits, crcDelim, ackSlot, eof
+	);
+
+	const bitPatternString = bitArray.join('');
+	document.getElementById('bit-pattern-stream').value = bitPatternString;
+
     return html;
 }
 
