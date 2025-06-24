@@ -104,7 +104,7 @@ button:hover {
     position: relative;
     z-index: 2;
 }
-.nowrap {
+.bit.nowrap {
   white-space: nowrap;
 }
 .bit:last-child {
