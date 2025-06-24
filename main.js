@@ -139,6 +139,12 @@ function generateCANFrame(canId, dlc, dataBytes, flip) {
     return html;
 }
 
+document.querySelectorAll('input[type="text"]').forEach(function(input) {
+    input.addEventListener('input', function() {
+        this.value = this.value.toUpperCase();
+    });
+});
+
 document.getElementById('generate-btn').addEventListener('click', function() {
     try {
 		let canIdFormat = document.querySelector('input[name="can-id-format"]:checked').value;
@@ -150,7 +156,7 @@ document.getElementById('generate-btn').addEventListener('click', function() {
         let dataStr = document.getElementById('data').value;
         let flip = document.getElementById('flip-bits').checked;
 
-        if (isNaN(canId) || canId < 0 || canId > 0x7FF) throw new Error("CAN ID must be 0-2047 (11 bits).");
+        if (isNaN(canId) || canId < 0 || canId > 0x7FF) throw new Error("CAN ID must be 0..2047 or 0..0x7FF (11 bits).");
         if (isNaN(dlc) || dlc < 0 || dlc > 8) throw new Error("DLC must be between 0 and 8.");
 
         let dataBytes = parseHexData(dataStr, dlc);
