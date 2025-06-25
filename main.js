@@ -142,6 +142,7 @@ function generateCANFrame(canId, dlc, dataBytes, flip) {
 	);
 
 	const bitPatternString = bitArray.join('');
+	document.getElementById('bit-pattern-count').textContent = `(${bitArray.length} bits)`;
 	document.getElementById('bit-pattern-stream').value = bitPatternString;
 
     return html;
