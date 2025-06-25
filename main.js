@@ -53,12 +53,12 @@ function renderBitField(label, bits, stuffIndices=[], dominantBit=0, flip=false)
     return html;
 }
 
-function generateCANFrame(canId, dlc, dataBytes, flip) {
+function generateCANFrame(canId, dlc, dataBytes, flip, rtr) {
     // Start bit
     const startBit = [0];
     // Arbitration: 11b ID + RTR (always 0 for data frame)
     const idBits = numberToBits(canId, 11);
-    const rtrBit = [0];
+    const rtrBit = [rtr ? 1 : 0];
     // Control: IDE (0 for base), r0 (0), DLC (4b)
     const ideBit = [0], r0Bit = [0];
     const dlcBits = numberToBits(dlc, 4);
@@ -175,13 +175,14 @@ document.getElementById('generate-btn').addEventListener('click', function() {
 		let dlc = parseInt(document.getElementById('dlc').value, 10);
         let dataStr = document.getElementById('data').value;
         let flip = document.getElementById('flip-bits').checked;
+		let rtr = document.getElementById('rtr-checkbox').checked;
 
         if (isNaN(canId) || canId < 0 || canId > 0x7FF) throw new Error("CAN ID must be 0..2047 or 0..0x7FF (11 bits).");
         if (isNaN(dlc) || dlc < 0 || dlc > 8) throw new Error("DLC must be between 0 and 8.");
 
         let dataBytes = parseHexData(dataStr, dlc);
 
-        let html = generateCANFrame(canId, dlc, dataBytes, flip);
+        let html = generateCANFrame(canId, dlc, dataBytes, flip, rtr);
         document.getElementById('bit-pattern-output').innerHTML = html;
     } catch (e) {
         document.getElementById('bit-pattern-output').innerHTML =

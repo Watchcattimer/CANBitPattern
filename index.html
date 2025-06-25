@@ -20,6 +20,9 @@
 				</div>			
 				
                 <input type="text" id="can-id" name="can-id" min="0" max="2047" required value="123">
+				<label style="margin-left:10px;">
+					<input type="checkbox" id="rtr-checkbox" name="rtr">RTR
+				</label>
             </div>
             <div class="form-group">
                 <label for="dlc">DLC (0-8):</label>
@@ -71,6 +74,12 @@
 				<tr>
 					<td><b>ACK</b></td>
 					<td>Acknowledge</td>
+				</tr>
+				<tr>
+					<td><b>RTR</b></td>
+					<td>Remote Transmission Request</td>
+					<td>Dominant = Data Frame</td>
+					<td>Recessive = Remote Frame = Data Frame</td>
 				</tr>
 				</table>
 		</div>	
