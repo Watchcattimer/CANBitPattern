@@ -18,22 +18,22 @@ function parseHexData(str, dlc) {
     return bytes;
 }
 
-// Insert stuff bits into bit array (returns [stuffedBits, stuffIndices])
 function stuffBits(bits) {
     let res = [bits[0]], count = 1, stuffIndices = [];
     for (let i = 1; i < bits.length; i++) {
         if (bits[i] === bits[i - 1]) {
             count++;
+            res.push(bits[i]);
             if (count === 5) {
                 let stuff = bits[i] ^ 1;
                 res.push(stuff);
                 stuffIndices.push(res.length - 1);
-                count = 1;
+                count = 0; // Reset to 0 after stuffing
             }
         } else {
             count = 1;
+            res.push(bits[i]);
         }
-        res.push(bits[i]);
     }
     return [res, stuffIndices];
 }
