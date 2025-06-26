@@ -78,7 +78,7 @@ function generateCANFrame(canId, dlc, dataBytes, flip, rtr) {
     let [stuffedBits, stuffIndices] = stuffBits(crcInput);
 
     // CRC-15 (external function, assumed provided)
-    let crcBits = calcCANCRC15(stuffedBits);
+    let crcBits = calcCANCRC15(crcInput);
 
     // CRC delimiter, ACK slot & delimiter, EOF
     const crcDelim = [1];
