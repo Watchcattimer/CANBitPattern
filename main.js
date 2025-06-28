@@ -169,3 +169,38 @@ document.getElementById('generate-btn').addEventListener('click', function() {
             `<div style="color:red;font-weight:bold;">Error: ${e.message}</div>`;
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const canIdInput = document.getElementById('can-id');
+    const decRadio = document.querySelector('input[name="can-id-format"][value="dec"]');
+    const hexRadio = document.querySelector('input[name="can-id-format"][value="hex"]');
+
+    function decToHex(dec) {
+        let n = parseInt(dec, 10);
+        if (isNaN(n)) return '';
+        return n.toString(16).toUpperCase();
+    }
+
+    function hexToDec(hex) {
+        // Remove "0x" if present
+        let s = hex.trim().replace(/^0x/i, '');
+        let n = parseInt(s, 16);
+        if (isNaN(n)) return '';
+        return n.toString(10);
+    }
+
+    function convertCanIdFormat() {
+        let currentValue = canIdInput.value.trim();
+        if (decRadio.checked) {
+            // Convert from hex to dec
+            canIdInput.value = hexToDec(currentValue);
+        } else if (hexRadio.checked) {
+            // Convert from dec to hex
+            canIdInput.value = decToHex(currentValue);
+        }
+    }
+
+    // Listen for change on both radio buttons
+    decRadio.addEventListener('change', convertCanIdFormat);
+    hexRadio.addEventListener('change', convertCanIdFormat);
+});
