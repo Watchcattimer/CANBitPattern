@@ -43,8 +43,8 @@ function renderBitField(label, bits, stuffIndices = [], dominantBit = 0, flip = 
     let html = `<span class="field-label">${label}:</span><div class="bit-field">`;
     for (let i = 0; i < bits.length; i++) {
         let val = bits[i];
+        let cls = (val == dominantBit) ? "bit dominant" : "bit recessive";
         let displayBit = flip ? (val ^ 1) : val;
-        let cls = (displayBit == dominantBit) ? "bit dominant" : "bit recessive";
         if (stuffIndices.includes(i)) cls += " stuff";
         html += `<span class="${cls}">${displayBit}</span>`;
     }
