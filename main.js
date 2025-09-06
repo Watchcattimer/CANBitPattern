@@ -78,7 +78,13 @@ function generateCANFrame(canId, dlc, dataBytes, flip, rtr) {
     let crcBits = calcCANCRC15(crcInput);
 
     // Add stuffing
-    let bitStreamToBeStuffed = [].concat(crcInput, crcBits);
+	let bitStreamToBeStuffed = [].concat(
+		startBit,
+		idBits, rtrBit,
+		ideBit, r0Bit, dlcBits,
+		dataBits,
+		crcBits
+	);
     let [stuffedBits, stuffIndices] = stuffBits(bitStreamToBeStuffed);
     
     // CRC delimiter, ACK slot & delimiter, EOF
@@ -92,17 +98,17 @@ function generateCANFrame(canId, dlc, dataBytes, flip, rtr) {
         "Arbitration (ID+RTR)": 1 + 11 + 1,
         "Control (IDE+r0+DLC)": 1 + 11 + 1 + 1 + 1 + 4,
         "Data": 1 + 11 + 1 + 1 + 1 + 4 + (8 * dlc),
+		"CRC": 1 + 11 + 1 + 1 + 1 + 4 + (8 * dlc) + 15,
     };
 
     function inRange(idx, start, end) { return idx >= start && idx < end; }
-    let fieldRanges = [], prev = 0;
-    for (let [label, end] of Object.entries(fieldEnds)) {
-        let [stuffed] = stuffBits(crcInput.slice(0, end));
-        let rangeEnd = stuffed.length;
-        fieldRanges.push([label, prev === 0 ? 0 : fieldRanges[fieldRanges.length - 1][2], rangeEnd]);
-        prev = end;
-    }
-
+		let fieldRanges = [], prev = 0;
+		for (let [label, end] of Object.entries(fieldEnds)) {
+			let [stuffed] = stuffBits(bitStreamToBeStuffed.slice(0, end));
+			let rangeEnd = stuffed.length;
+			fieldRanges.push([label, prev === 0 ? 0 : fieldRanges[fieldRanges.length - 1][2], rangeEnd]);
+			prev = end;
+	}
     // Generate HTML per field
     let html = '';
     for (let [label, from, to] of fieldRanges) {
@@ -113,7 +119,7 @@ function generateCANFrame(canId, dlc, dataBytes, flip, rtr) {
         if (fieldBits.length === 0) continue;
         html += renderBitField(label, fieldBits, fieldStuffIndices, 0, flip);
     }
-    html += renderBitField('CRC (15 bits)', crcBits, [], 0, flip);
+
     html += renderBitField('CRC Delimiter', crcDelim, [], 0, flip);
     html += renderBitField('ACK + Delimiter', ackSlot.concat(ackDelim), [], 0, flip);
     html += renderBitField('End of Frame', eof, [], 0, flip);
