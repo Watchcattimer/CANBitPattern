@@ -74,12 +74,13 @@ function generateCANFrame(canId, dlc, dataBytes, flip, rtr) {
         dataBits
     );
 
-    // Add stuffing
-    let [stuffedBits, stuffIndices] = stuffBits(crcInput);
-
     // CRC-15 (external function, assumed provided)
     let crcBits = calcCANCRC15(crcInput);
 
+    // Add stuffing
+    let bitStreamToBeStuffed = [].concat(crcInput, crcBits);
+    let [stuffedBits, stuffIndices] = stuffBits(bitStreamToBeStuffed);
+    
     // CRC delimiter, ACK slot & delimiter, EOF
     const crcDelim = [1];
     const ackSlot = [1], ackDelim = [1];
