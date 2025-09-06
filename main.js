@@ -52,6 +52,26 @@ function renderBitField(label, bits, stuffIndices = [], dominantBit = 0, flip = 
     return html;
 }
 
+function getFieldEnds(dlc) {
+  const fieldSizes = {
+    "Start bit": 1,
+    "Arbitration (ID+RTR)": 11 + 1,
+    "Control (IDE+r0+DLC)": 1 + 1 + 4,
+    "Data": 8 * dlc,
+    "CRC": 15
+  };
+
+  let fieldEnds = {};
+  let offset = 0;
+
+  for (const [name, size] of Object.entries(fieldSizes)) {
+    offset += size;
+    fieldEnds[name] = offset;
+  }
+
+  return fieldEnds;
+}
+
 // Generate CAN frame and its visualization
 function generateCANFrame(canId, dlc, dataBytes, flip, rtr) {
     const startBit = [0];
@@ -93,13 +113,7 @@ function generateCANFrame(canId, dlc, dataBytes, flip, rtr) {
     const eof = Array(7).fill(1);
 
     // Calculate field ranges after stuffing
-    let fieldEnds = {
-        "Start bit": 1,
-        "Arbitration (ID+RTR)": 1 + 11 + 1,
-        "Control (IDE+r0+DLC)": 1 + 11 + 1 + 1 + 1 + 4,
-        "Data": 1 + 11 + 1 + 1 + 1 + 4 + (8 * dlc),
-		"CRC": 1 + 11 + 1 + 1 + 1 + 4 + (8 * dlc) + 15,
-    };
+	let fieldEnds = getFieldEnds(dlc);
 
     function inRange(idx, start, end) { return idx >= start && idx < end; }
 		let fieldRanges = [], prev = 0;
